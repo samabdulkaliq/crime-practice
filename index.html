@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crime Report Practice</title>
+<meta name="description" content="Speaking practice for the English exam: nine crime pictures and the teacher's six questions, with answers in English and Arabic.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0E5F6E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Practice">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+@font-face { font-family: "Atkinson"; font-weight: 400; font-display: swap; src: url("atkinson-400.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson"; font-weight: 700; font-display: swap; src: url("atkinson-700.woff2") format("woff2"); }
+@font-face { font-family: "Naskh"; font-weight: 400; font-display: swap; src: url("naskh-400.woff2") format("woff2"); }
+@font-face { font-family: "Naskh"; font-weight: 700; font-display: swap; src: url("naskh-700.woff2") format("woff2"); }
+/* Layout: one picture and one question at a time; three big buttons; nothing else to learn. */
+:root {
+  --bg: #F7F9FA; --surface: #FFFFFF; --ink: #1B2430; --muted: #5A6774; --line: #D9E1E6;
+  --accent: #0E5F6E; --accent-ink: #0A4A56; --accent-soft: #E6F1F3; --on-accent: #FFFFFF;
+  --en: "Atkinson", "Segoe UI", system-ui, sans-serif;
+  --ar: "Naskh", "Atkinson", "Geeza Pro", "Arial", serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #0F1619; --surface: #172227; --ink: #E7EEF1; --muted: #A3B3BB; --line: #2A3A42;
+  --accent: #4FB3C2; --accent-ink: #8FD3DD; --accent-soft: #173238; --on-accent: #06272D; color-scheme: dark } }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--en); font-size: 18px; line-height: 1.45; }
+.wrap { max-width: 980px; margin: 0 auto;
+        padding-top: max(18px, env(safe-area-inset-top, 0px)); padding-bottom: max(36px, env(safe-area-inset-bottom, 0px));
+        padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+        display: flex; flex-direction: column; gap: 14px; }
+.ar { font-family: var(--ar); direction: rtl; text-align: right; }
+button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.where { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
+.where .en { font-size: 20px; font-weight: 700; }
+.where .en span { color: var(--muted); font-weight: 400; }
+.where .ar { font-size: 22px; font-weight: 700; }
+
+.stage { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.pic { margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--accent-soft); }
+.pic .frame { aspect-ratio: 2 / 3; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.pic img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.pic .missing { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                gap: 8px; padding: 20px; text-align: center; color: var(--muted); border: 2px dashed var(--line); border-radius: 16px; }
+.pic .missing .m-en { font-weight: 700; font-size: 18px; color: var(--ink); }
+.pic .missing .m-ar { font-weight: 700; font-size: 20px; color: var(--ink); text-align: center; }
+.pic .missing .m-sub { font-size: 14px; line-height: 1.4; }
+.pic .missing .m-note { font-size: 13px; line-height: 1.4; color: var(--accent-ink); }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px clamp(16px, 3vw, 28px);
+        display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.qnum { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--muted); }
+.qnum .ar { font-size: 16px; }
+.q { margin: 0; font-size: clamp(30px, 4.4vw, 40px); line-height: 1.12; text-wrap: balance; }
+.qar { margin: 4px 0 0; font-size: 26px; color: var(--muted); }
+
+.btn { width: 100%; border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;
+       gap: 12px; font-weight: 700; font-size: 20px; border: 2px solid var(--accent); background: var(--surface); color: var(--accent-ink); }
+.btn .ar { font-size: 21px; font-weight: 700; }
+.btn .l { display: inline-flex; align-items: center; gap: 10px; }
+.btn svg { width: 24px; height: 24px; flex: none; }
+.btn.main { background: var(--accent); color: var(--on-accent); }
+.btn.main .ar { color: var(--on-accent); }
+
+.answer { background: var(--accent-soft); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+.answer .lab { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; color: var(--accent-ink); }
+.answer .lab .ar { font-size: 15px; }
+.answer .en { font-size: clamp(26px, 3.6vw, 32px); font-weight: 700; color: var(--accent-ink); line-height: 1.25; }
+.answer .arx { font-size: 24px; line-height: 1.6; }
+.answer .loc { font-size: 15px; color: var(--muted); }
+
+.nav { display: flex; justify-content: space-between; gap: 12px; }
+.link { border: 0; background: none; color: var(--muted); font-size: 16px; padding: 8px 2px; text-decoration: underline; text-underline-offset: 3px; }
+.extra { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
+.extra a { color: var(--accent-ink); font-weight: 700; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.extra a .ar { font-weight: 700; }
+.hint { font-size: 16px; color: var(--muted); line-height: 1.6; }
+.foot { font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .stage { grid-template-columns: minmax(0, 1fr); }
+  .pic .frame { aspect-ratio: auto; height: min(36vh, 300px); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="where">
+    <div class="en" id="where-en"></div>
+    <div class="ar" id="where-ar" dir="rtl"></div>
+  </div>
+
+  <main class="stage">
+    <figure class="pic"><div class="frame"><img id="pic" alt="">
+      <div class="missing" id="missing" hidden>
+        <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="17" cy="19" r="3.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M8 35 l11-11 7 7 5-5 9 9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <div class="m-en">Classroom picture not available</div>
+        <div class="m-ar ar" dir="rtl">صورة الصف غير متوفرة</div>
+        <div class="m-sub">The teacher's picture for this crime was not in the files supplied.</div>
+        <div class="m-note" id="mnote" hidden>Possible match: classroom picture 3 (a person at a house door). Waiting for confirmation.</div>
+      </div></div></figure>
+
+    <section class="card" aria-live="polite">
+      <div class="qnum"><span id="qnum-en"></span><span class="ar" id="qnum-ar" dir="rtl"></span></div>
+      <div>
+        <h1 class="q" id="qen"></h1>
+        <p class="qar ar" id="qar" dir="rtl"></p>
+      </div>
+
+      <button class="btn" type="button" id="listenq">
+        <span class="l"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>Listen</span>
+        <span class="ar">استمعي للسؤال</span></button>
+
+      <button class="btn main" type="button" id="show">
+        <span class="l">Show answer</span><span class="ar">أظهري الجواب</span></button>
+
+      <div class="answer" id="answer" hidden>
+        <div class="lab"><span>Answer</span><span class="ar" dir="rtl">الجواب</span></div>
+        <div class="en" id="aen"></div>
+        <div class="arx ar" id="aar" dir="rtl"></div>
+        <div class="loc ar" id="loc" dir="rtl" hidden>هذا مثال للتدريب. في الحقيقة، قولي مكانكِ الحقيقي.</div>
+      </div>
+
+      <button class="btn" type="button" id="listena" hidden>
+        <span class="l"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>Listen</span>
+        <span class="ar">استمعي للجواب</span></button>
+
+      <button class="btn main" type="button" id="next" hidden>
+        <span class="l">Next</span><span class="ar">التالي</span></button>
+    </section>
+  </main>
+
+  <div class="nav">
+    <button class="link" type="button" id="prevpic">← Previous picture</button>
+    <button class="link" type="button" id="nextpic">Next picture →</button>
+  </div>
+
+  <div class="extra">
+    <a href="study-book.pdf" target="_blank" rel="noopener"><span>Open the study book (PDF)</span><span class="ar" dir="rtl">افتحي كتيّب الدراسة</span></a>
+    <p class="hint ar" dir="rtl" id="install">لإضافة هذا التدريب إلى شاشة هاتفكِ مثل تطبيق: في آيفون اضغطي زر المشاركة ثم «إضافة إلى الشاشة الرئيسية». في أندرويد افتحي قائمة المتصفح (⋮) ثم «إضافة إلى الشاشة الرئيسية».</p>
+  </div>
+  <p class="foot">Answer aloud first, then press Show answer. The Vandalism and Drunk driving pictures are from the teacher's slides; the other seven classroom pictures are not available yet. Locations are practice examples.</p>
+</div>
+
+<script>
+const DATA = {"questions": [["What happened?", "ماذا حدث؟"], ["What was the crime?", "ما هي الجريمة؟"], ["What did you see?", "ماذا رأيتِ؟"], ["What does the criminal look like?", "كيف يبدو المجرم؟"], ["Is anyone hurt?", "هل يوجد أحد مُصاب؟"], ["What is your exact location?", "ما هو موقعكِ بالضبط؟"]], "crimes": [{"key": "vandalism", "en": "Vandalism", "ar": "التخريب", "img": "01_vandalism_orange_car_clearer.jpg", "alt": "Classroom cartoon: a man in a green sweater holding a metal bar next to an orange car at night", "candidate": false, "answers": [["A man tried to damage a car.", "حاول رجلٌ أن يُخرّب سيارة."], ["It was vandalism.", "كانت جريمة تخريب."], ["I saw a man with a metal bar.", "رأيتُ رجلًا معه عصا حديدية."], ["He is wearing a red cap, sunglasses, and a green sweater.", "يلبس قبعة حمراء ونظارة شمسية وكنزة خضراء."], ["No, nobody is hurt.", "لا، لا يوجد أحد مُصاب."], ["I am on Yonge Street, near Walmart.", "أنا في شارع يونغ، قرب وولمارت."]]}, {"key": "gang", "en": "Gang Violence", "ar": "عنف العصابات", "img": null, "alt": "", "candidate": false, "answers": [["Two groups of men were fighting.", "مجموعتان من الرجال كانتا تتشاجران."], ["It was gang violence.", "كانت جريمة عنف عصابات."], ["I saw men hitting each other.", "رأيتُ رجالًا يضربون بعضهم بعضًا."], ["One group is wearing red. The other is wearing blue.", "مجموعة تلبس الأحمر، والمجموعة الأخرى تلبس الأزرق."], ["I am not sure.", "لستُ متأكدة."], ["I am on Bayview Avenue, near TD Bank.", "أنا في جادّة بايفيو، قرب بنك تي دي."]]}, {"key": "drunk", "en": "Drunk Driving", "ar": "القيادة تحت تأثير الكحول", "img": "02_drunk_driving_driver_bottle_clearer.jpg", "alt": "Classroom cartoon: a smiling driver in a striped T-shirt holding a green bottle", "candidate": false, "answers": [["I think a man was drinking and driving.", "أظن أن رجلًا كان يشرب ويقود السيارة."], ["It was drunk driving.", "كانت قيادة تحت تأثير الكحول."], ["I saw a bottle in the driver's hand.", "رأيتُ زجاجة في يد السائق."], ["He has brown hair. He is wearing a pink striped T-shirt.", "شعره بنّي. يلبس تي شيرت ورديًّا مخطّطًا."], ["No, nobody is hurt.", "لا، لا يوجد أحد مُصاب."], ["I am on Major Mackenzie Drive, near Yonge Street.", "أنا في طريق ميجر ماكنزي، قرب شارع يونغ."]]}, {"key": "drugs", "en": "Illegal Drugs", "ar": "المخدرات غير القانونية", "img": null, "alt": "", "candidate": false, "answers": [["I think a man was buying drugs.", "أظن أن رجلًا كان يشتري مخدرات."], ["I think it was a drug deal.", "أظن أنها كانت صفقة مخدرات."], ["I saw a man give money to another man.", "رأيتُ رجلًا يعطي نقودًا لرجل آخر."], ["One man is wearing a black hoodie. The other is wearing a blue cap.", "رجل يلبس هودي أسود، والآخر يلبس قبعة زرقاء."], ["No, nobody is hurt.", "لا، لا يوجد أحد مُصاب."], ["I am on Major Mackenzie Drive, behind Walmart.", "أنا في طريق ميجر ماكنزي، خلف وولمارت."]]}, {"key": "mugging", "en": "Mugging", "ar": "السرقة بالإكراه في الشارع", "img": null, "alt": "", "candidate": false, "answers": [["A man stole a woman's bag.", "سرق رجلٌ حقيبة امرأة."], ["It was a mugging.", "كانت سرقة بالإكراه."], ["I saw a woman on the ground. The man ran away with her bag.", "رأيتُ امرأة على الأرض، وهرب الرجل بحقيبتها."], ["He is wearing a black hoodie and blue jeans.", "يلبس هودي أسود وبنطال جينز أزرق."], ["Yes, I think the woman is hurt.", "نعم، أظن أن المرأة مُصابة."], ["I am on Yonge Street, near TD Bank.", "أنا في شارع يونغ، قرب بنك تي دي."]]}, {"key": "burglary", "en": "Burglary", "ar": "السطو على البيوت", "img": null, "alt": "", "candidate": true, "answers": [["A man broke into a house.", "اقتحم رجلٌ بيتًا."], ["It was a burglary.", "كانت جريمة سطو على بيت."], ["I saw a man at a broken window. He had a big bag.", "رأيتُ رجلًا عند نافذة مكسورة. كان معه كيس كبير."], ["He is wearing a black hoodie and gray pants.", "يلبس هودي أسود وبنطالًا رماديًّا."], ["No, nobody is hurt. I think nobody is home.", "لا، لا يوجد أحد مُصاب. أظن أنه لا يوجد أحد في البيت."], ["I am on Bayview Avenue, near Walmart.", "أنا في جادّة بايفيو، قرب وولمارت."]]}, {"key": "assault", "en": "Assault", "ar": "الاعتداء (الضرب)", "img": null, "alt": "", "candidate": false, "answers": [["A man hit another man.", "ضرب رجلٌ رجلًا آخر."], ["It was an assault.", "كانت جريمة اعتداء."], ["I saw a man punch another man in the face.", "رأيتُ رجلًا يلكم رجلًا آخر في وجهه."], ["He is wearing a green jacket and black pants.", "يلبس سترة خضراء وبنطالًا أسود."], ["Yes, one man is hurt.", "نعم، رجل واحد مُصاب."], ["I am on Major Mackenzie Drive, near TD Bank.", "أنا في طريق ميجر ماكنزي، قرب بنك تي دي."]]}, {"key": "murder", "en": "Murder", "ar": "القتل", "img": null, "alt": "", "candidate": false, "answers": [["I think someone killed a man.", "أظن أن شخصًا قتل رجلًا."], ["It was a murder.", "كانت جريمة قتل."], ["I saw a man on the ground. Another man ran away.", "رأيتُ رجلًا على الأرض، ورجلًا آخر هرب."], ["He is wearing a black jacket. I couldn't see his face.", "يلبس سترة سوداء. لم أستطع أن أرى وجهه."], ["Yes. The man is not moving. I think he is dead.", "نعم. الرجل لا يتحرك. أظن أنه ميت."], ["I am on Bayview Avenue, near Major Mackenzie Drive.", "أنا في جادّة بايفيو، قرب طريق ميجر ماكنزي."]]}, {"key": "gun", "en": "Gun Crime", "ar": "جرائم الأسلحة النارية", "img": null, "alt": "", "candidate": false, "answers": [["A man fired a gun in the street.", "أطلق رجلٌ النار من مسدس في الشارع."], ["It was a gun crime.", "كانت جريمة سلاح ناري."], ["I saw a man with a gun. People were running away.", "رأيتُ رجلًا معه مسدس، وكان الناس يهربون."], ["He is wearing a gray jacket and a black cap.", "يلبس سترة رمادية وقبعة سوداء."], ["I don't know.", "لا أعرف."], ["I am on Yonge Street, near Major Mackenzie Drive.", "أنا في شارع يونغ، قرب طريق ميجر ماكنزي."]]}]};
+const QS = DATA.questions, CR = DATA.crimes;
+const AR_NUM = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const $ = id => document.getElementById(id);
+let ci = 0, qi = 0;
+try { const s = JSON.parse(localStorage.getItem("crime-practice-pos")); if (s && CR[s.ci] && s.qi >= 0 && s.qi < 6) { ci = s.ci; qi = s.qi; } } catch (e) {}
+const save = () => { try { localStorage.setItem("crime-practice-pos", JSON.stringify({ ci, qi })); } catch (e) {} };
+
+const synth = window.speechSynthesis;
+let voice = null;
+function pickVoice() {
+  if (!synth) return;
+  const vs = synth.getVoices().filter(v => /^en/i.test(v.lang));
+  voice = vs.find(v => v.lang === "en-CA") || vs.find(v => v.lang === "en-US") || vs[0] || null;
+}
+if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; } else { $("listenq").hidden = true; }
+function say(text) {
+  if (!synth) return;
+  try { synth.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = voice ? voice.lang : "en-US";
+        if (voice) u.voice = voice; u.rate = 0.8; synth.speak(u); } catch (e) {}
+}
+
+function arText(el, s) {
+  el.textContent = "";
+  const re = /[A-Za-z][A-Za-z0-9 '’=\-\/…?]*[A-Za-z0-9?…]|[A-Za-z]/g; let last = 0, m;
+  while ((m = re.exec(s))) { el.append(s.slice(last, m.index)); const b = document.createElement("bdi"); b.textContent = m[0]; el.append(b); last = m.index + m[0].length; }
+  el.append(s.slice(last));
+}
+
+function render() {
+  const c = CR[ci], [qen, qar] = QS[qi], [aen, aar] = c.answers[qi];
+  $("where-en").innerHTML = `${c.en} <span>· picture ${ci + 1} of 9</span>`;
+  $("where-ar").textContent = `${c.ar} · الصورة ${AR_NUM(ci + 1)} من ٩`;
+  const hasImg = !!c.img;
+  $("pic").hidden = !hasImg; $("missing").hidden = hasImg; $("mnote").hidden = !c.candidate;
+  if (hasImg) { $("pic").src = c.img; $("pic").alt = c.alt; } else { $("pic").removeAttribute("src"); $("pic").alt = ""; }
+  $("qnum-en").textContent = `Question ${qi + 1} of 6`;
+  $("qnum-ar").textContent = `السؤال ${AR_NUM(qi + 1)} من ٦`;
+  $("qen").textContent = qen; $("qar").textContent = qar;
+  $("aen").textContent = aen; arText($("aar"), aar);
+  $("loc").hidden = qi !== 5;
+  $("answer").hidden = true; $("listena").hidden = true; $("next").hidden = true; $("show").hidden = false;
+  if (synth) try { synth.cancel(); } catch (e) {}
+  save();
+}
+function go(dci, dqi) {
+  if (dqi) { qi += dqi; if (qi > 5) { qi = 0; ci = (ci + 1) % CR.length; } }
+  if (dci) { ci = (ci + dci + CR.length) % CR.length; qi = 0; }
+  render(); window.scrollTo({ top: 0 });
+}
+
+$("listenq").onclick = () => say(QS[qi][0]);
+$("listena").onclick = () => say(CR[ci].answers[qi][0]);
+$("show").onclick = () => { $("answer").hidden = false; $("listena").hidden = !synth; $("next").hidden = false; $("show").hidden = true; $("next").focus({ preventScroll: true }); };
+$("next").onclick = () => go(0, 1);
+$("nextpic").onclick = () => go(1, 0);
+$("prevpic").onclick = () => go(-1, 0);
+if (window.matchMedia("(display-mode: standalone)").matches || navigator.standalone) $("install").hidden = true;
+render();
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
+</body>
+</html>
